@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RoomDBKotlin">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+
+
+<!--
+    CLEAN ACRCHITECTURE
+
+    com.example.userapp
+    │
+    ├── data
+    │   ├── local
+    │   │   ├── UserDao.kt
+    │   │   ├── UserEntity.kt
+    │   │   └── AppDatabase.kt
+    │   │
+    │   ├── remote
+    │   │   ├── ApiService.kt
+    │   │   └── UserDto.kt
+    │   │
+    │   ├── repository
+    │   │   └── UserRepositoryImpl.kt
+    │
+    ├── domain
+    │   ├── model
+    │   │   └── User.kt
+    │   │
+    │   ├── repository
+    │   │   └── UserRepository.kt
+    │   │
+    │   └── usecase
+    │       ├── GetUsersUseCase.kt
+    │       ├── InsertUserUseCase.kt
+    │       ├── DeleteUserUseCase.kt
+    │       └── SyncUsersUseCase.kt
+    │
+    ├── di
+    │   └── AppModule.kt
+    │
+    ├── presentation
+    │   ├── screen
+    │   │   └── UserScreen.kt
+    │   │
+    │   └── viewmodel
+    │       └── UserViewModel.kt
+    │
+    ├── utils
+    │   └── NetworkUtils.kt
+    │
+    ├── MainActivity.kt
+    └── MyApplication.kt-->
+
+
+
+<!--    Offline Support CRUD App
+    Features
+
+    ✅ Jetpack Compose
+    ✅ Clean Architecture
+    ✅ MVVM
+    ✅ Hilt Dependency Injection
+    ✅ Room Database
+    ✅ Retrofit API
+    ✅ CRUD Operations
+    ✅ Internet ON/OFF Handling
+    ✅ Offline First App
+    ✅ Flow + StateFlow
+    ✅ Compose UI-->
