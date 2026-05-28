@@ -71,3 +71,25 @@ POJECT FLOW
 6.Once the data is returned, it flows back to the Use Case, then to the ViewModel.
 7.The ViewModel updates its state (such as StateFlow).
 8.The Composable observes that state and updates the UI with the new data.
+
+
+
+# Notes App
+
+## Features
+- Add Notes
+- Edit Notes
+- Delete Notes
+- Search Notes
+- Categories
+- Dark Mode
+
+## Tech Stack
+- Kotlin
+- Compose
+- Room
+- Hilt
+- MVVM
+
+## Architecture
+Clean Architecture + Repository Pattern

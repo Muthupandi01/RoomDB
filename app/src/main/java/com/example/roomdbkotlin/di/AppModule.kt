@@ -3,17 +3,14 @@ package com.example.roomdbkotlin.di
 import android.content.Context
 import androidx.room.Room
 import com.example.roomdbkotlin.data.local.AppDatabase
-import com.example.roomdbkotlin.data.local.UserDao
-import com.example.roomdbkotlin.data.remote.ApiService
-import com.example.roomdbkotlin.data.repository.UserRepositoryImpl
-import com.example.roomdbkotlin.domain.repository.UserRepository
+import com.example.roomdbkotlin.data.local.NoteDao
+import com.example.roomdbkotlin.data.repository.NoteRepositoryImpl
+import com.example.roomdbkotlin.domain.repository.NoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -29,48 +26,27 @@ object AppModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "user_db"
-        ).build()
-    }
-
-    @Provides
-    fun provideUserDao(db: AppDatabase): UserDao {
-        return db.userDao()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit {
-
-        return Retrofit.Builder()
-            .baseUrl(
-                "https://jsonplaceholder.typicode.com/"
-            )
-            .addConverterFactory(
-                GsonConverterFactory.create()
-            )
+            "notes_db"
+        )
+            .fallbackToDestructiveMigration()
             .build()
     }
 
-/*    @Provides
+    @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit): ApiService {
+    fun provideNoteDao(
+        db: AppDatabase
+    ): NoteDao {
 
-        return retrofit.create(ApiService::class.java)
-    }*/
+        return db.noteDao()
+    }
 
     @Provides
     @Singleton
     fun provideRepository(
-        dao: UserDao,
-        api: ApiService,
-        @ApplicationContext context: Context
-    ): UserRepository {
+        dao: NoteDao
+    ): NoteRepository {
 
-        return UserRepositoryImpl(
-            dao,
-            api,
-            context
-        )
+        return NoteRepositoryImpl(dao)
     }
 }
